@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_133904) do
+ActiveRecord::Schema.define(version: 2022_11_26_225506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 2022_11_04_133904) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_deletion_requests_on_account_id"
+  end
+
+  create_table "account_destinations", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "instance_id"
+    t.string "path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_account_destinations_on_account_id"
+    t.index ["instance_id"], name: "index_account_destinations_on_instance_id"
   end
 
   create_table "account_domain_blocks", force: :cascade do |t|

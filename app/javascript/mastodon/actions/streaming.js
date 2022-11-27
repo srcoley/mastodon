@@ -10,6 +10,7 @@ import {
   fillHomeTimelineGaps,
   fillPublicTimelineGaps,
   fillCommunityTimelineGaps,
+  fillRemoteCommunityTimelineGaps,
   fillListTimelineGaps,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
@@ -133,6 +134,15 @@ export const connectUserStream = () =>
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
   connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
+
+/**
+ * @param {Object} options
+ * @param {boolean} [options.onlyMedia]
+ * @param {string} domain
+ * @return {function(): void}
+ */
+export const connectRemoteCommunityStream = (domain, { onlyMedia } = {}) =>
+  connectTimelineStream(`remote_community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillRemoteCommunityTimelineGaps(domain, { onlyMedia })) });
 
 /**
  * @param {Object} options

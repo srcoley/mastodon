@@ -29,6 +29,7 @@ import {
   KeyboardShortcuts,
   PublicTimeline,
   CommunityTimeline,
+  RemoteCommunityTimeline,
   AccountTimeline,
   AccountGallery,
   HomeTimeline,
@@ -182,6 +183,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
           <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
           <WrappedRoute path={['/public/local', '/timelines/public/local']} exact component={CommunityTimeline} content={children} />
+          <WrappedRoute path={['/remote/:domain']} exact component={RemoteCommunityTimeline} content={children} />
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
